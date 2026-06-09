@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naija Biz Hub - Verified Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .app-container { user-select: none; -webkit-tap-highlight-color: transparent; }
+    </style>
+</head>
+<body class="text-slate-800 antialiased app-container">
+
+    <nav class="bg-white shadow-sm sticky top-0 z-50 px-4 py-3 flex justify-between items-center max-w-md mx-auto">
+        <div class="flex items-center gap-2">
+            <div class="bg-green-600 text-white p-2 rounded-lg">
+                <i class="fa-solid fa-shield-check"></i>
+            </div>
+            <div>
+                <h1 class="font-bold text-lg tracking-tight leading-none text-slate-900">NaijaBiz<span class="text-green-600">Hub</span></h1>
+                <span class="text-[10px] text-green-600 font-semibold bg-green-50 px-1.5 rounded">100% Verified</span>
+            </div>
+        </div>
+        <button class="text-slate-500 hover:text-green-600 transition">
+            <i class="fa-solid fa-bell"></i>
+        </button>
+    </nav>
+
+    <main class="max-w-md mx-auto bg-white min-h-screen shadow-md relative pb-24">
+        
+        <div class="px-4 pt-4 bg-white">
+            <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">The Ultimate Directory</p>
+            <h2 class="text-xl font-bold text-slate-900 leading-tight mt-0.5">Find any business in Nigeria,<br><span class="text-green-600">anywhere, anytime.</span></h2>
+        </div>
+
+        <div class="p-4 bg-white border-b border-slate-100">
+            <div class="flex gap-2">
+                <div class="relative flex-1">
+                    <input type="text" id="searchInput" placeholder="Find mechanics, tailors, plumbers..." class="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-100 border-none text-slate-800 focus:outline-none focus:ring-2 focus:ring-green-500 transition text-sm">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-slate-400"></i>
+                </div>
+                <button id="gpsBtn" class="bg-green-50 hover:bg-green-100 text-green-600 px-4 rounded-xl border border-green-200 transition flex items-center justify-center gap-2 text-sm font-semibold whitespace-nowrap">
+                    <i class="fa-solid fa-location-crosshairs text-base"></i> Near Me
+                </button>
+            </div>
+            
+            <div class="flex gap-2 mt-4 overflow-x-auto hide-scrollbar">
+                <button class="city-filter active bg-slate-800 text-white px-4 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition" data-city="all">All Cities</button>
+                <button class="city-filter bg-slate-100 text-slate-600 hover:bg-slate-200 px-4 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition" data-city="anambra">Anambra State</button>
+                <button class="city-filter bg-slate-100 text-slate-600 hover:bg-slate-200 px-4 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition" data-city="lagos">Lagos</button>
+                <button class="city-filter bg-slate-100 text-slate-600 hover:bg-slate-200 px-4 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition" data-city="ph">Port Harcourt</button>
+            </div>
+        </div>
+
+        <div class="px-4 py-4 bg-slate-50 border-b border-slate-100">
+            <div class="flex gap-4 overflow-x-auto hide-scrollbar pb-1">
+                <div class="category-filter flex flex-col items-center gap-1.5 min-w-[65px] cursor-pointer" data-category="mechanic">
+                    <div class="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center text-amber-700">
+                        <i class="fa-solid fa-wrench"></i>
+                    </div>
+                    <span class="text-[10px] font-medium text-slate-600">Mechanics</span>
+                </div>
+                <div class="category-filter flex flex-col items-center gap-1.5 min-w-[65px] cursor-pointer" data-category="plumber">
+                    <div class="w-12 h-12 rounded-full bg-sky-100 flex items-center justify-center text-sky-600">
+                        <i class="fa-solid fa-faucet"></i>
+                    </div>
+                    <span class="text-[10px] font-medium text-slate-600">Plumbers</span>
+                </div>
+                <div class="category-filter flex flex-col items-center gap-1.5 min-w-[65px] cursor-pointer" data-category="carpenter">
+                    <div class="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center text-orange-700">
+                        <i class="fa-solid fa-hammer"></i>
+                    </div>
+                    <span class="text-[10px] font-medium text-slate-600">Carpenters</span>
+                </div>
+                <div class="category-filter flex flex-col items-center gap-1.5 min-w-[65px] cursor-pointer" data-category="tailor">
+                    <div class="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600">
+                        <i class="fa-solid fa-scissors"></i>
+                    </div>
+                    <span class="text-[10px] font-medium text-slate-600">Tailors</span>
+                </div>
+                <div class="category-filter flex flex-col items-center gap-1.5 min-w-[65px] cursor-pointer" data-category="laundry">
+                    <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                        <i class="fa-solid fa-shirt"></i>
+                    </div>
+                    <span class="text-[10px] font-medium text-slate-600">Laundry</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-4">
+            <h3 class="font-semibold text-sm text-slate-500 mb-3 uppercase tracking-wider" id="resultsTitle">Verified Businesses</h3>
+            <div id="businessList" class="flex flex-col gap-3"></div>
+        </div>
+
+    </main>
+
+    <div id="detailsModal" class="fixed inset-0 bg-slate-900/40 hidden items-end sm:items-center justify-center z-[100] transition-opacity backdrop-blur-sm">
+        <div class="bg-white w-full max-w-md rounded-t-3xl sm:rounded-2xl p-6 transform translate-y-full transition-transform duration-300 shadow-2xl" id="modalContent">
+            <div class="w-12 h-1.5 bg-slate-200 rounded-full mx-auto mb-4"></div>
+            
+            <div class="flex justify-between items-start mb-4">
+                <div class="flex gap-4 items-center">
+                    <div id="modalIcon" class="w-16 h-16 rounded-2xl flex items-center justify-center text-white text-2xl shadow-sm"></div>
+                    <div>
+                        <h3 id="modalTitle" class="font-bold text-xl text-slate-900 leading-tight"></h3>
+                        <p id="modalCategory" class="text-sm text-green-600 font-medium"></p>
+                    </div>
+                </div>
+                <button id="closeModal" class="text-slate-400 hover:text-slate-700 p-2"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            
+            <div class="bg-blue-50 border border-blue-100 rounded-xl p-3 mb-4 flex items-start gap-2">
+                <i class="fa-solid fa-circle-check text-blue-500 mt-0.5"></i>
+                <p class="text-xs text-blue-800 leading-relaxed">This business profile, opening hours, and standard base prices have been verified on-site by <strong>NaijaBizHub Anambra Team</strong>.</p>
+            </div>
+
+            <p id="modalDesc" class="text-sm text-slate-600 mb-4 leading-relaxed"></p>
+            
+            <div class="bg-slate-50 rounded-xl p-4 space-y-3 mb-6 border border-slate-100">
+                <div class="flex items-center gap-3 text-sm text-slate-700">
+                    <div class="w-7 h-7 rounded-full bg-white flex items-center justify-center shadow-sm text-slate-400"><i class="fa-solid fa-location-dot text-xs text-red-500"></i></div>
+                    <div><p class="text-[10px] text-slate-400 font-medium leading-none">LOCATION</p><span id="modalLocation" class="font-semibold text-xs text-slate-800"></span></div>
+                </div>
+                <div class="flex items-center gap-3 text-sm text-slate-700">
+                    <div class="w-7 h-7 rounded-full bg-white flex items-center justify-center shadow-sm text-slate-400"><i class="fa-solid fa-clock text-xs text-amber-500"></i></div>
+                    <div><p class="text-[10px] text-slate-400 font-medium leading-none">OPENING HOURS</p><span id="modalHours" class="font-semibold text-xs text-slate-800"></span></div>
+                </div>
+                <div class="flex items-center gap-3 text-sm text-slate-700">
+                    <div class="w-7 h-7 rounded-full bg-white flex items-center justify-center shadow-sm text-slate-400"><i class="fa-solid fa-tags text-xs text-green-500"></i></div>
+                    <div><p class="text-[10px] text-slate-400 font-medium leading-none">BASE PRICE GUIDE</p><span id="modalPrice" class="font-semibold text-xs text-green-700"></span></div>
+                </div>
+            </div>
+
+            <button id="hireBtn" class="w-full bg-green-600 hover:bg-green-700 text-white py-4 rounded-xl font-bold flex justify-center items-center gap-2 transition shadow-lg shadow-green-200">
+                <i class="fa-brands fa-whatsapp text-xl"></i> Chat Business on WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const ADMIN_WHATSAPP_NUMBER = "2348000000000"; 
+
+        // ANAMBRA PROTOTYPE DATASET (Mechanics, Plumbers, Carpenters included)
+        const businesses = [
+            { id: "MEC01", name: "Chidi Auto Mechanical Works", category: "mechanic", city: "anambra", location: "Nnewi LGA, Anambra", color: "bg-amber-500", icon: "fa-wrench", hours: "8:00 AM - 6:30 PM", price: "Diagnostics from ₦3,500", desc: "Expert Japanese car repair specialist. Scan codes, engine rebuilds, suspension tuning, and brake repairs." },
+            { id: "PLU01", name: "Okey Plumbing Services", category: "plumber", city: "anambra", location: "Awka South LGA, Anambra", color: "bg-sky-500", icon: "fa-faucet", hours: "7:30 AM - 8:00 PM", price: "Leak repairs from ₦5,000", desc: "Certified piping expert. Specialized in borehole connections, water heater installations, and clogged pipes clearing." },
+            { id: "CAR01", name: "Onitsha Premium Woodcraft", category: "carpenter", city: "anambra", location: "Onitsha North LGA, Anambra", color: "bg-orange-500", icon: "fa-hammer", hours: "8:00 AM - 6:00 PM", price: "Furniture repairs from ₦7,500", desc: "Bespoke bed frames, kitchen cabinets, and structural roofing work. Highly precise craftsmanship." },
+            { id: "T01", name: "Stitches by Ada", category: "tailor", city: "lagos", location: "Surulere, Lagos", color: "bg-indigo-500", icon: "fa-scissors", hours: "9:00 AM - 7:00 PM", price: "Native wear from ₦15,000", desc: "Bespoke tailoring for men and women. Aso-ebi, corporate wear, and casuals." },
+            { id: "L01", name: "Crisp Drycleaners", category: "ph", location: "GRA Phase 2, Port Harcourt", color: "bg-blue-500", icon: "fa-shirt", hours: "7:00 AM - 9:00 PM", price: "Per shirt wash from ₦1,200", desc: "Premium laundry, stain removal, and professional iron pressing. Pickup options available." }
+        ];
+
+        const businessListContainer = document.getElementById('businessList');
+        const searchInput = document.getElementById('searchInput');
+        const resultsTitle = document.getElementById('resultsTitle');
+        const gpsBtn = document.getElementById('gpsBtn');
+        let currentCity = 'all';
+        let currentCategory = 'all';
+
+        function renderBusinesses(data) {
+            businessListContainer.innerHTML = '';
+            if (data.length === 0) {
+                businessListContainer.innerHTML = `
+                    <div class="text-center py-12 text-slate-500 w-full">
+                        <div class="w-14 h-14 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fa-solid fa-magnifying-glass text-xl text-slate-300"></i>
+                        </div>
+                        <p class="font-medium text-sm">No profiles match this setup yet.</p>
+                    </div>`;
+                return;
+            }
+
+            data.forEach(biz => {
+                const card = document.createElement('div');
+                card.className = "bg-white border border-slate-100 rounded-2xl p-3.5 shadow-sm hover:shadow-md transition cursor-pointer flex gap-3 items-center mx-1";
+                card.onclick = () => openModal(biz);
+                card.innerHTML = `
+                    <div class="w-14 h-14 rounded-xl ${biz.color} flex items-center justify-center text-white shrink-0">
+                        <i class="fa-solid ${biz.icon} text-xl"></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <h4 class="font-bold text-slate-800 text-sm truncate">${biz.name}</h4>
+                        <p class="text-[11px] text-slate-500 truncate mt-0.5">${biz.desc}</p>
+                        <div class="flex items-center gap-2 mt-2 text-[10px] font-medium">
+                            <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded flex items-center gap-1">
+                                <i class="fa-solid fa-location-dot"></i> ${biz.city.toUpperCase()}
+                            </span>
+                            <span class="text-green-600 font-semibold bg-green-50 px-1.5 rounded flex items-center gap-0.5">
+                                <i class="fa-solid fa-shield-check"></i> Profiles Verified
+                            </span>
+                        </div>
+                    </div>
+                    <div class="text-slate-300 pl-2"><i class="fa-solid fa-chevron-right text-sm"></i></div>
+                `;
+                businessListContainer.appendChild(card);
+            });
+        }
+
+        function filterData() {
+            let term = searchInput.value.toLowerCase();
+            let filtered = businesses.filter(biz => {
+                let matchesSearch = biz.name.toLowerCase().includes(term) || biz.desc.toLowerCase().includes(term) || biz.location.toLowerCase().includes(term);
+                let matchesCity = currentCity === 'all' || biz.city === currentCity;
+                let matchesCategory = currentCategory === 'all' || biz.category === currentCategory;
+                return matchesSearch && matchesCity && matchesCategory;
+            });
+            renderBusinesses(filtered);
+
+            let titleText = "Verified Businesses";
+            if (currentCategory !== 'all') titleText = `${currentCategory.charAt(0).toUpperCase() + currentCategory.slice(1)}s`;
+            if (currentCity !== 'all') titleText += ` in ${currentCity === 'anambra' ? 'Anambra' : currentCity.toUpperCase()}`;
+            resultsTitle.textContent = titleText;
+        }
+
+        // GPS Button Simulation (Requests actual native browser permissions)
+        gpsBtn.addEventListener('click', () => {
+            if (navigator.geolocation) {
+                gpsBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Locating...`;
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        gpsBtn.innerHTML = `<i class="fa-solid fa-circle-check"></i> Near Me`;
+                        // For the MVP preview, clicking "Near Me" filters straight to the Anambra market cluster 
+                        currentCity = 'anambra';
+                        document.querySelectorAll('.city-filter').forEach(b => {
+                            b.classList.remove('bg-slate-800', 'text-white');
+                            if(b.getAttribute('data-city') === 'anambra') b.classList.add('bg-slate-800', 'text-white');
+                        });
+                        filterData();
+                    },
+                    (error) => {
+                        gpsBtn.innerHTML = `<i class="fa-solid fa-location-crosshairs"></i> Near Me`;
+                        alert("To find local artisans near you, please grant location access permissions.");
+                    }
+                );
+            } else {
+                alert("GPS services are not supported by your current phone browser software.");
+            }
+        });
+
+        searchInput.addEventListener('input', filterData);
+
+        document.querySelectorAll('.city-filter').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.city-filter').forEach(b => b.classList.remove('bg-slate-800', 'text-white'));
+                e.target.classList.add('bg-slate-800', 'text-white');
+                currentCity = e.target.getAttribute('data-city');
+                filterData();
+            });
+        });
+
+        document.querySelectorAll('.category-filter').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                let cat = e.currentTarget.getAttribute('data-category');
+                if (currentCategory === cat) {
+                    currentCategory = 'all';
+                    document.querySelectorAll('.category-filter > div').forEach(div => div.classList.remove('ring-2', 'ring-green-500', 'ring-offset-2'));
+                } else {
+                    currentCategory = cat;
+                    document.querySelectorAll('.category-filter > div').forEach(div => div.classList.remove('ring-2', 'ring-green-500', 'ring-offset-2'));
+                    e.currentTarget.querySelector('div').classList.add('ring-2', 'ring-green-500', 'ring-offset-2');
+                }
+                filterData();
+            });
+        });
+
+        const modal = document.getElementById('detailsModal');
+        const modalContent = document.getElementById('modalContent');
+        let currentBusinessSelected = null;
+
+        function openModal(biz) {
+            currentBusinessSelected = biz;
+            document.getElementById('modalIcon').className = `w-16 h-16 rounded-2xl flex items-center justify-center text-white text-2xl shadow-sm ${biz.color}`;
+            document.getElementById('modalIcon').innerHTML = `<i class="fa-solid ${biz.icon}"></i>`;
+            document.getElementById('modalTitle').textContent = biz.name;
+            document.getElementById('modalDesc').textContent = biz.desc;
+            document.getElementById('modalLocation').textContent = biz.location;
+            document.getElementById('modalHours').textContent = biz.hours || "8:00 AM - 6:00 PM";
+            document.getElementById('modalPrice').textContent = biz.price || "Contact for pricing guide";
+            
+            const catNames = {tailor: "Fashion & Tailoring", laundry: "Cleaning Services", mechanic: "Mechanical Engineering", plumber: "Plumbing & Hardware", carpenter: "Carpentry & Woodwork"};
+            document.getElementById('modalCategory').textContent = catNames[biz.category] || biz.category;
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => { modalContent.classList.remove('translate-y-full'); }, 10);
+        }
+
+        function closeModalFn() {
+            modalContent.classList.add('translate-y-full');
+            setTimeout(() => { modal.classList.add('hidden'); modal.classList.remove('flex'); }, 300);
+        }
+
+        document.getElementById('closeModal').addEventListener('click', closeModalFn);
+        modal.addEventListener('click', (e) => { if (e.target === modal) closeModalFn(); });
+
+        document.getElementById('hireBtn').addEventListener('click', () => {
+            if (!currentBusinessSelected) return;
+            const message = `Hello NaijaBizHub, I want to connect with this verified artisan:\n\n*Artisan/Biz:* ${currentBusinessSelected.name}\n*LGA/Location:* ${currentBusinessSelected.location}\n*Price Guide:* ${currentBusinessSelected.price}\n\nPlease put me through to them!`;
+            window.open(`https://wa.me/${ADMIN_WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
+        });
+
+        filterData();
+    </script>
+</body>
+</html>
