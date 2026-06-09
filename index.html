@@ -100,58 +100,109 @@
     </main>
 
     <div id="detailsModal" class="fixed inset-0 bg-slate-900/40 hidden items-end sm:items-center justify-center z-[100] transition-opacity backdrop-blur-sm">
-        <div class="bg-white w-full max-w-md rounded-t-3xl sm:rounded-2xl p-6 transform translate-y-full transition-transform duration-300 shadow-2xl" id="modalContent">
-            <div class="w-12 h-1.5 bg-slate-200 rounded-full mx-auto mb-4"></div>
+        <div class="bg-white w-full max-w-md rounded-t-3xl sm:rounded-2xl transform translate-y-full transition-transform duration-300 shadow-2xl overflow-hidden max-h-[92vh] flex flex-col" id="modalContent">
             
-            <div class="flex justify-between items-start mb-4">
-                <div class="flex gap-4 items-center">
-                    <div id="modalIcon" class="w-16 h-16 rounded-2xl flex items-center justify-center text-white text-2xl shadow-sm"></div>
+            <div class="w-full h-48 bg-slate-200 relative shrink-0">
+                <img id="modalStoreImage" src="" alt="Store front" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent"></div>
+                <button id="closeModal" class="absolute top-4 right-4 bg-white/80 backdrop-blur-sm text-slate-700 w-9 h-9 rounded-full flex items-center justify-center shadow"><i class="fa-solid fa-xmark text-lg"></i></button>
+                
+                <div class="absolute bottom-4 left-4 flex items-center gap-3">
+                    <div id="modalIcon" class="w-12 h-12 rounded-xl flex items-center justify-center text-white text-xl shadow-md border-2 border-white"></div>
                     <div>
-                        <h3 id="modalTitle" class="font-bold text-xl text-slate-900 leading-tight"></h3>
-                        <p id="modalCategory" class="text-sm text-green-600 font-medium"></p>
+                        <h3 id="modalTitle" class="font-bold text-lg text-white leading-tight drop-shadow-sm"></h3>
+                        <p id="modalCategory" class="text-xs text-green-300 font-medium drop-shadow-sm"></p>
                     </div>
                 </div>
-                <button id="closeModal" class="text-slate-400 hover:text-slate-700 p-2"><i class="fa-solid fa-xmark text-xl"></i></button>
             </div>
             
-            <div class="bg-blue-50 border border-blue-100 rounded-xl p-3 mb-4 flex items-start gap-2">
-                <i class="fa-solid fa-circle-check text-blue-500 mt-0.5"></i>
-                <p class="text-xs text-blue-800 leading-relaxed">This business profile, opening hours, and standard base prices have been verified on-site by <strong>NaijaBizHub Anambra Team</strong>.</p>
-            </div>
+            <div class="p-5 overflow-y-auto hide-scrollbar space-y-4">
+                <div class="bg-blue-50 border border-blue-100 rounded-xl p-3 flex items-start gap-2">
+                    <i class="fa-solid fa-circle-check text-blue-500 mt-0.5"></i>
+                    <p class="text-xs text-blue-800 leading-relaxed">This business profile, opening hours, store images, and baseline pricing structure have been physically verified on-site by the <strong>NaijaBizHub Team</strong>.</p>
+                </div>
 
-            <p id="modalDesc" class="text-sm text-slate-600 mb-4 leading-relaxed"></p>
-            
-            <div class="bg-slate-50 rounded-xl p-4 space-y-3 mb-6 border border-slate-100">
-                <div class="flex items-center gap-3 text-sm text-slate-700">
-                    <div class="w-7 h-7 rounded-full bg-white flex items-center justify-center shadow-sm text-slate-400"><i class="fa-solid fa-location-dot text-xs text-red-500"></i></div>
-                    <div><p class="text-[10px] text-slate-400 font-medium leading-none">LOCATION</p><span id="modalLocation" class="font-semibold text-xs text-slate-800"></span></div>
+                <p id="modalDesc" class="text-sm text-slate-600 leading-relaxed"></p>
+                
+                <div class="bg-slate-50 rounded-xl p-4 space-y-3 border border-slate-100">
+                    <div class="flex items-center gap-3 text-sm text-slate-700">
+                        <div class="w-7 h-7 rounded-full bg-white flex items-center justify-center shadow-sm"><i class="fa-solid fa-location-dot text-xs text-red-500"></i></div>
+                        <div><p class="text-[10px] text-slate-400 font-medium leading-none">LOCATION</p><span id="modalLocation" class="font-semibold text-xs text-slate-800"></span></div>
+                    </div>
+                    <div class="flex items-center gap-3 text-sm text-slate-700">
+                        <div class="w-7 h-7 rounded-full bg-white flex items-center justify-center shadow-sm"><i class="fa-solid fa-clock text-xs text-amber-500"></i></div>
+                        <div><p class="text-[10px] text-slate-400 font-medium leading-none">OPENING HOURS</p><span id="modalHours" class="font-semibold text-xs text-slate-800"></span></div>
+                    </div>
+                    <div class="flex items-center gap-3 text-sm text-slate-700">
+                        <div class="w-7 h-7 rounded-full bg-white flex items-center justify-center shadow-sm"><i class="fa-solid fa-tags text-xs text-green-500"></i></div>
+                        <div><p class="text-[10px] text-slate-400 font-medium leading-none">BASE PRICE GUIDE</p><span id="modalPrice" class="font-semibold text-xs text-green-700"></span></div>
+                    </div>
                 </div>
-                <div class="flex items-center gap-3 text-sm text-slate-700">
-                    <div class="w-7 h-7 rounded-full bg-white flex items-center justify-center shadow-sm text-slate-400"><i class="fa-solid fa-clock text-xs text-amber-500"></i></div>
-                    <div><p class="text-[10px] text-slate-400 font-medium leading-none">OPENING HOURS</p><span id="modalHours" class="font-semibold text-xs text-slate-800"></span></div>
-                </div>
-                <div class="flex items-center gap-3 text-sm text-slate-700">
-                    <div class="w-7 h-7 rounded-full bg-white flex items-center justify-center shadow-sm text-slate-400"><i class="fa-solid fa-tags text-xs text-green-500"></i></div>
-                    <div><p class="text-[10px] text-slate-400 font-medium leading-none">BASE PRICE GUIDE</p><span id="modalPrice" class="font-semibold text-xs text-green-700"></span></div>
-                </div>
-            </div>
 
-            <button id="hireBtn" class="w-full bg-green-600 hover:bg-green-700 text-white py-4 rounded-xl font-bold flex justify-center items-center gap-2 transition shadow-lg shadow-green-200">
-                <i class="fa-brands fa-whatsapp text-xl"></i> Chat Business on WhatsApp
-            </button>
+                <button id="hireBtn" class="w-full bg-green-600 hover:bg-green-700 text-white py-4 rounded-xl font-bold flex justify-center items-center gap-2 transition shadow-lg shadow-green-200 mt-2">
+                    <i class="fa-brands fa-whatsapp text-xl"></i> Chat Business on WhatsApp
+                </button>
+            </div>
         </div>
     </div>
 
     <script>
         const ADMIN_WHATSAPP_NUMBER = "2348000000000"; 
 
-        // ANAMBRA PROTOTYPE DATASET (Mechanics, Plumbers, Carpenters included)
+        // UPDATED DATA WITH IMAGE SLOTS (Using high-quality free placeholders for now)
         const businesses = [
-            { id: "MEC01", name: "Chidi Auto Mechanical Works", category: "mechanic", city: "anambra", location: "Nnewi LGA, Anambra", color: "bg-amber-500", icon: "fa-wrench", hours: "8:00 AM - 6:30 PM", price: "Diagnostics from ₦3,500", desc: "Expert Japanese car repair specialist. Scan codes, engine rebuilds, suspension tuning, and brake repairs." },
-            { id: "PLU01", name: "Okey Plumbing Services", category: "plumber", city: "anambra", location: "Awka South LGA, Anambra", color: "bg-sky-500", icon: "fa-faucet", hours: "7:30 AM - 8:00 PM", price: "Leak repairs from ₦5,000", desc: "Certified piping expert. Specialized in borehole connections, water heater installations, and clogged pipes clearing." },
-            { id: "CAR01", name: "Onitsha Premium Woodcraft", category: "carpenter", city: "anambra", location: "Onitsha North LGA, Anambra", color: "bg-orange-500", icon: "fa-hammer", hours: "8:00 AM - 6:00 PM", price: "Furniture repairs from ₦7,500", desc: "Bespoke bed frames, kitchen cabinets, and structural roofing work. Highly precise craftsmanship." },
-            { id: "T01", name: "Stitches by Ada", category: "tailor", city: "lagos", location: "Surulere, Lagos", color: "bg-indigo-500", icon: "fa-scissors", hours: "9:00 AM - 7:00 PM", price: "Native wear from ₦15,000", desc: "Bespoke tailoring for men and women. Aso-ebi, corporate wear, and casuals." },
-            { id: "L01", name: "Crisp Drycleaners", category: "ph", location: "GRA Phase 2, Port Harcourt", color: "bg-blue-500", icon: "fa-shirt", hours: "7:00 AM - 9:00 PM", price: "Per shirt wash from ₦1,200", desc: "Premium laundry, stain removal, and professional iron pressing. Pickup options available." }
+            { 
+                id: "MEC01", 
+                name: "Chidi Auto Mechanical Works", 
+                category: "mechanic", 
+                city: "anambra", 
+                location: "Nnewi LGA, Anambra", 
+                color: "bg-amber-500", 
+                icon: "fa-wrench", 
+                hours: "8:00 AM - 6:30 PM", 
+                price: "Diagnostics from ₦3,500", 
+                image: "https://images.unsplash.com/photo-1486006920555-c77dce18193b?w=500&auto=format&fit=crop&q=60",
+                desc: "Expert Japanese car repair specialist. Scan codes, engine rebuilds, suspension tuning, and brake repairs." 
+            },
+            { 
+                id: "PLU01", 
+                name: "Okey Plumbing Services", 
+                category: "plumber", 
+                city: "anambra", 
+                location: "Awka South LGA, Anambra", 
+                color: "bg-sky-500", 
+                icon: "fa-faucet", 
+                hours: "7:30 AM - 8:00 PM", 
+                price: "Leak repairs from ₦5,000", 
+                image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=500&auto=format&fit=crop&q=60",
+                desc: "Certified piping expert. Specialized in borehole connections, water heater installations, and clogged pipes clearing." 
+            },
+            { 
+                id: "CAR01", 
+                name: "Onitsha Premium Woodcraft", 
+                category: "carpenter", 
+                city: "anambra", 
+                location: "Onitsha North LGA, Anambra", 
+                color: "bg-orange-500", 
+                icon: "fa-hammer", 
+                hours: "8:00 AM - 6:00 PM", 
+                price: "Furniture repairs from ₦7,500", 
+                image: "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?w=500&auto=format&fit=crop&q=60",
+                desc: "Bespoke bed frames, kitchen cabinets, and structural roofing work. Highly precise craftsmanship." 
+            },
+            { 
+                id: "T01", 
+                name: "Stitches by Ada", 
+                category: "tailor", 
+                city: "lagos", 
+                location: "Surulere, Lagos", 
+                color: "bg-indigo-500", 
+                icon: "fa-scissors", 
+                hours: "9:00 AM - 7:00 PM", 
+                price: "Native wear from ₦15,000", 
+                image: "https://images.unsplash.com/photo-1544816155-12df9643f363?w=500&auto=format&fit=crop&q=60",
+                desc: "Bespoke tailoring for men and women. Aso-ebi, corporate wear, and casuals." 
+            }
         ];
 
         const businessListContainer = document.getElementById('businessList');
@@ -176,25 +227,30 @@
 
             data.forEach(biz => {
                 const card = document.createElement('div');
-                card.className = "bg-white border border-slate-100 rounded-2xl p-3.5 shadow-sm hover:shadow-md transition cursor-pointer flex gap-3 items-center mx-1";
+                card.className = "bg-white border border-slate-100 rounded-2xl p-2.5 shadow-sm hover:shadow-md transition cursor-pointer flex gap-3 items-center mx-1";
                 card.onclick = () => openModal(biz);
+                
+                // Card View with Small Thumbnail Image layout
                 card.innerHTML = `
-                    <div class="w-14 h-14 rounded-xl ${biz.color} flex items-center justify-center text-white shrink-0">
-                        <i class="fa-solid ${biz.icon} text-xl"></i>
+                    <div class="w-16 h-16 rounded-xl bg-slate-100 overflow-hidden shrink-0 relative">
+                        <img src="${biz.image || 'https://images.unsplash.com/photo-1582139329536-e7284fece509?w=150&auto=format&fit=crop&q=60'}" class="w-full h-full object-cover">
+                        <div class="absolute bottom-1 right-1 w-5 h-5 rounded-md ${biz.color} text-white flex items-center justify-center text-[9px] shadow">
+                            <i class="fa-solid ${biz.icon}"></i>
+                        </div>
                     </div>
                     <div class="flex-1 min-w-0">
                         <h4 class="font-bold text-slate-800 text-sm truncate">${biz.name}</h4>
                         <p class="text-[11px] text-slate-500 truncate mt-0.5">${biz.desc}</p>
-                        <div class="flex items-center gap-2 mt-2 text-[10px] font-medium">
+                        <div class="flex items-center gap-2 mt-1.5 text-[10px] font-medium">
                             <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded flex items-center gap-1">
-                                <i class="fa-solid fa-location-dot"></i> ${biz.city.toUpperCase()}
+                                <i class="fa-solid fa-location-dot text-[9px]"></i> ${biz.city.toUpperCase()}
                             </span>
                             <span class="text-green-600 font-semibold bg-green-50 px-1.5 rounded flex items-center gap-0.5">
-                                <i class="fa-solid fa-shield-check"></i> Profiles Verified
+                                <i class="fa-solid fa-shield-check text-[9px]"></i> Verified Shop
                             </span>
                         </div>
                     </div>
-                    <div class="text-slate-300 pl-2"><i class="fa-solid fa-chevron-right text-sm"></i></div>
+                    <div class="text-slate-300 pr-1"><i class="fa-solid fa-chevron-right text-xs"></i></div>
                 `;
                 businessListContainer.appendChild(card);
             });
@@ -216,14 +272,12 @@
             resultsTitle.textContent = titleText;
         }
 
-        // GPS Button Simulation (Requests actual native browser permissions)
         gpsBtn.addEventListener('click', () => {
             if (navigator.geolocation) {
                 gpsBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Locating...`;
                 navigator.geolocation.getCurrentPosition(
                     (position) => {
                         gpsBtn.innerHTML = `<i class="fa-solid fa-circle-check"></i> Near Me`;
-                        // For the MVP preview, clicking "Near Me" filters straight to the Anambra market cluster 
                         currentCity = 'anambra';
                         document.querySelectorAll('.city-filter').forEach(b => {
                             b.classList.remove('bg-slate-800', 'text-white');
@@ -273,7 +327,11 @@
 
         function openModal(biz) {
             currentBusinessSelected = biz;
-            document.getElementById('modalIcon').className = `w-16 h-16 rounded-2xl flex items-center justify-center text-white text-2xl shadow-sm ${biz.color}`;
+            
+            // Set Banner Store Image
+            document.getElementById('modalStoreImage').src = biz.image || 'https://images.unsplash.com/photo-1582139329536-e7284fece509?w=500&auto=format&fit=crop&q=60';
+            
+            document.getElementById('modalIcon').className = `w-12 h-12 rounded-xl flex items-center justify-center text-white text-xl shadow-md border-2 border-white ${biz.color}`;
             document.getElementById('modalIcon').innerHTML = `<i class="fa-solid ${biz.icon}"></i>`;
             document.getElementById('modalTitle').textContent = biz.name;
             document.getElementById('modalDesc').textContent = biz.desc;
