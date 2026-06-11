@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght=300;400;500;600;700&display=swap');
         body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; }
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -48,7 +48,7 @@
 
     <div id="mainAppLayout" class="hidden">
         <nav class="bg-white shadow-sm sticky top-0 z-50 px-4 py-3 flex justify-between items-center max-w-md mx-auto">
-            <div class="flex items-center gap-2" onclick="location.reload();" class="cursor-pointer">
+            <div class="flex items-center gap-2 cursor-pointer" onclick="location.reload();">
                 <div class="bg-green-600 text-white p-2 rounded-lg"><i class="fa-solid fa-shield-check"></i></div>
                 <div>
                     <h1 class="font-bold text-base tracking-tight text-slate-900">Anambra<span class="text-green-600">Hub</span></h1>
@@ -211,6 +211,64 @@
         
         let isEmergencyMode = false;
 
-        // FIXED ENGINES ASSIGNED TO CORRESPONDING CITY FILTERS PERFECTLY
         const businesses = [
-            { id: "M01", name: "Chidi Auto Mechanical Works", category: "mechanic", city: "nnewi", location: "Nnewi North LGA, Anambra", color: "bg-amber-500", icon: "fa-wrench", hours: "8:00 AM - 6:30 PM", price: "Diagnostics from ₦3,500", phone: "2348000000000", image: "
+            { id: "M01", name: "Chidi Auto Mechanical Works", category: "mechanic", city: "nnewi", location: "Nnewi North LGA, Anambra", color: "bg-amber-500", icon: "fa-wrench", hours: "8:00 AM - 6:30 PM", price: "Diagnostics from ₦3,500", phone: "2348000000000", image: "https://images.unsplash.com/photo-1486006920555-c77dce18193b?w=500", jobs: "142", delivery: "96%", distance: "1.4 km", emergency: true, desc: "Expert Japanese car repair specialist. On-site emergency mechanical breakdowns recovery across Nnewi zones." },
+            { id: "P01", name: "Okey Plumbing Services", category: "plumber", city: "awka", location: "Awka South LGA, Anambra", color: "bg-sky-500", icon: "fa-faucet", hours: "7:30 AM - 8:00 PM", price: "Leak repairs from ₦5,000", phone: "2348000000000", image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=500", jobs: "68", delivery: "90%", distance: "2.8 km", emergency: true, desc: "Certified emergency piping solutions framework specialist. Borehole repairs, clearing clogged sewers instantly." },
+            { id: "C01", name: "Onitsha Premium Woodcraft", category: "carpenter", city: "onitsha", location: "Onitsha North LGA, Anambra", color: "bg-orange-500", icon: "fa-hammer", hours: "8:00 AM - 6:00 PM", price: "Furniture repairs from ₦7,500", phone: "2348000000000", image: "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?w=500", jobs: "94", delivery: "85%", distance: "4.1 km", emergency: false, desc: "High finish wood structuring frameworks. Bespoke luxury cabinet designs, door alignment repair works." }
+        ];
+
+        function enterApp(route) {
+            if(route === 'customer') {
+                document.getElementById('onboardingScreen').classList.add('hidden');
+                document.getElementById('mainAppLayout').classList.remove('hidden');
+                filterData();
+            } else if (route === 'register') {
+                document.getElementById('onboardingScreen').classList.add('hidden');
+                document.getElementById('artisanRegistrationForm').classList.remove('hidden');
+            }
+        }
+
+        // Handle Artisan Registration Form Submit
+        document.getElementById('regForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('regName').value;
+            const category = document.getElementById('regCategory').value;
+            const lga = document.getElementById('regCity').value;
+            const address = document.getElementById('regAddress').value;
+            const phone = document.getElementById('regPhone').value;
+            const hours = document.getElementById('regHours').value;
+            const desc = document.getElementById('regDesc').value;
+
+            const textMessage = `Hello AnambraHub, I want to list my trade profile:\n\n*Biz Name:* ${name}\n*Trade:* ${category}\n*LGA:* ${lga}\n*Address:* ${address}\n*Phone Contact:* ${phone}\n*Hours:* ${hours}\n*Details:* ${desc}`;
+            window.open(`https://wa.me/${ADMIN_WHATSAPP_NUMBER}?text=${encodeURIComponent(textMessage)}`, '_blank');
+        });
+
+        // Emergency Mode Controller
+        const emergencyToggle = document.getElementById('emergencyToggle');
+        const emergencyDot = document.getElementById('emergencyDot');
+        
+        emergencyToggle.addEventListener('click', () => {
+            isEmergencyMode = !isEmergencyMode;
+            if(isEmergencyMode) {
+                emergencyToggle.classList.remove('bg-slate-100', 'text-slate-700', 'border-slate-200');
+                emergencyToggle.classList.add('bg-red-600', 'text-white', 'border-red-700');
+                emergencyDot.classList.remove('bg-slate-400');
+                emergencyDot.classList.add('bg-white');
+            } else {
+                emergencyToggle.classList.remove('bg-red-600', 'text-white', 'border-red-700');
+                emergencyToggle.classList.add('bg-slate-100', 'text-slate-700', 'border-slate-200');
+                emergencyDot.classList.remove('bg-white');
+                emergencyDot.classList.add('bg-slate-400');
+            }
+            filterData();
+        });
+
+        const businessListContainer = document.getElementById('businessList');
+        const searchInput = document.getElementById('searchInput');
+        const resultsTitle = document.getElementById('resultsTitle');
+        let currentCity = 'all';
+        let currentCategory = 'all';
+
+        function renderBusinesses(data) {
+            businessListContainer.innerHTML = '';
+            if (data.lengt
